@@ -793,7 +793,7 @@ class NodeFaceDetect(Node):
 
     def reset_faces(self):
         now = self.get_clock().now()
-        for id in self.knownFaces.keys():
+        for id in list(self.knownFaces.keys()):
             del self.knownFaces[id]
         self.faces_pub.publish(IdsList(header=Header(stamp=now.to_msg()), ids=[]))
         self.faces_pub.wait_for_all_acked(Duration(seconds=1))
